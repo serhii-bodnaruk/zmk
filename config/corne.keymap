@@ -15,70 +15,66 @@
 #define NUMBERS 3
 #define SYMBOLS 4
 
-&caps_word {
-    continue-list = <UNDERSCORE MINUS>;
-};
-
 / {
     combos {
         compatible = "zmk,combos";
         combo_left_option {
-            timeout-ms = <70>;
+            timeout-ms = <90>;
             key-positions = <13 16>;
             bindings = <&kp LALT>;
         };
         combo_left_ctrl {
-            timeout-ms = <70>;
+            timeout-ms = <90>;
             key-positions = <15 16>;
             bindings = <&kp LCTRL>;
         };
         combo_left_shift {
-            timeout-ms = <70>;
+            timeout-ms = <90>;
             key-positions = <14 16>;
             bindings = <&kp LSHFT>;
         };
         combo_left_cmd {
-            timeout-ms = <70>;
+            timeout-ms = <90>;
             key-positions = <14 15>;
             bindings = <&kp LCMD>;
         };
         combo_left_cmd_shift {
-            timeout-ms = <70>;
+            timeout-ms = <90>;
             key-positions = <14 15 16>;
             bindings = <&kp LS(LCMD)>;
         };
         combo_left_cmd_option {
-            timeout-ms = <70>;
+            timeout-ms = <90>;
             key-positions = <13 15 16>;
             bindings = <&kp LA(LCMD)>;
         };
         combo_right_option {
-            timeout-ms = <70>;
+            timeout-ms = <90>;
             key-positions = <19 22>;
             bindings = <&kp RALT>;
         };
         combo_right_ctrl {
-            timeout-ms = <70>;
+            timeout-ms = <90>;
             key-positions = <19 20>;
             bindings = <&kp RCTRL>;
         };
         combo_right_shift {
-            timeout-ms = <70>;
+            timeout-ms = <90>;
             key-positions = <19 21>;
             bindings = <&kp RSHFT>;
         };
         combo_right_cmd {
-            timeout-ms = <70>;
+            timeout-ms = <90>;
             key-positions = <20 21>;
             bindings = <&kp LCMD>;
         };
         combo_right_cmd_shift {
-            timeout-ms = <70>;
+            timeout-ms = <90>;
             key-positions = <19 20 21>;
             bindings = <&kp RS(RCMD)>;
         };
         combo_right_cmd_option {
-            timeout-ms = <70>;
+            timeout-ms = <90>;
             key-positions = <19 20 22>;
             bindings = <&kp LA(LCMD)>;
         };
@@ -88,47 +84,47 @@
 / {
         behaviors {
             colsem: colon_semicolon {
-                compatible = "zmk,behavior-mod-morph";
                 #binding-cells = <0>;
                 bindings = <&kp COLON>, <&kp SEMICOLON>;
+                compatible = "zmk,behavior-mod-morph";
                 mods = <(MOD_LSFT|MOD_RSFT)>;
             };
             dqtsqt: double_quote_single_quote {
-                compatible = "zmk,behavior-mod-morph";
                 #binding-cells = <0>;
                 bindings = <&kp DQT>, <&kp SQT>;
+                compatible = "zmk,behavior-mod-morph";
                 mods = <(MOD_LSFT|MOD_RSFT)>;
             };
             pipe_bslh: pipe_backslash {
-                compatible = "zmk,behavior-mod-morph";
                 #binding-cells = <0>;
                 bindings = <&kp PIPE>, <&kp BSLH>;
+                compatible = "zmk,behavior-mod-morph";
                 mods = <(MOD_LSFT|MOD_RSFT)>;
             };
             pisl: pipe_bslash {
-                compatible = "zmk,behavior-hold-tap";
                 #binding-cells = <2>;
-                tapping-term-ms = <150>;
-                quick-tap-ms = <0>;
-                flavor = "tap-preferred";
                 bindings = <&kp>, <&pipe_bslh>;
+                compatible = "zmk,behavior-hold-tap";
+                flavor = "tap-preferred";
+                quick-tap-ms = <0>;
+                tapping-term-ms = <150>;
             };
             syclsm: symbols_colsem {
-                compatible = "zmk,behavior-hold-tap";
                 #binding-cells = <2>;
-                tapping-term-ms = <150>;
-                quick-tap-ms = <0>;
-                flavor = "tap-preferred";
                 bindings = <&mo>, <&colsem>;
+                compatible = "zmk,behavior-hold-tap";
+                flavor = "tap-preferred";
+                quick-tap-ms = <0>;
+                tapping-term-ms = <200>;
             };
             rpi: require_prior_idle {
-                compatible = "zmk,behavior-hold-tap";
                 #binding-cells = <2>;
+                bindings = <&kp>, <&kp>;
+                compatible = "zmk,behavior-hold-tap";
                 flavor = "tap-preferred";
-                tapping-term-ms = <200>;
                 quick-tap-ms = <200>;
                 require-prior-idle-ms = <125>;
-                bindings = <&kp>, <&kp>;
+                tapping-term-ms = <200>;
             };
         };
 
@@ -170,10 +166,10 @@
 // | SHFT/=+   |sym/:;|  Q   |  J   |  K  |  X  |   |  B  |  M   |  W  |  V  |  Z  | RSHFT/|\  |
 //                           | QWRT |SPACE| BSPC|   | ENT | TAB  |CAPS |
                         bindings = <
-   &rpi LCMD GRAVE   &dqtsqt            &lt NUMBERS COMMA &lt ARROWS DOT   &kp P      &kp Y       &kp F   &kp G    &kp C    &kp R    &kp L          &rpi RCMD SLASH
-   &rpi LCTRL ESC    &kp A              &kp O             &kp E            &kp U      &kp I       &kp D   &kp H    &kp T    &kp N    &kp S          &rpi RCTRL MINUS
-   &rpi LSHFT EQUAL  &syclsm SYMBOLS 0  &kp Q             &kp J            &kp K      &kp X       &kp B   &kp M    &kp W    &kp V    &lt SYMBOLS Z  &pisl RSHFT 0
-                                                       &langtog QUERTY  &kp SPACE  &kp BSPC       &kp RET &kp TAB  &caps_word
+   &kp GRAVE  &dqtsqt            &lt NUMBERS COMMA &lt ARROWS DOT   &kp P      &kp Y       &kp F   &kp G    &kp C    &kp R    &kp L          &kp SLASH
+   &kp ESC    &kp A              &kp O             &kp E            &kp U      &kp I       &kp D   &kp H    &kp T    &kp N    &kp S          &kp MINUS
+   &kp EQUAL  &syclsm SYMBOLS 0  &kp Q             &kp J            &kp K      &kp X       &kp B   &kp M    &kp W    &kp V    &lt SYMBOLS Z  &pipe_bslh
+                                     &langtog QUERTY  &kp SPACE  &kp BSPC      &kp RET &kp TAB  &caps_word
                         >;
                 };
 
@@ -185,8 +181,8 @@
 //                    | DVK | SPACE | BSPC |   | ENT | TAB  | CAPS |
                         bindings = <
    &kp GRAVE    &kp Q           &lt NUMBERS W  &lt ARROWS E  &kp R  &kp T       &kp Y  &kp U  &kp I     &kp O   &kp P            &kp LBKT
-   &kp RBKT     &kp A           &kp S          &kp D         &kp F  &kp G       &kp H  &kp J  &kp K     &kp L   &kp SEMI         &kp SQT
-   &kp LSHFT    &lt SYMBOLS Z   &kp X          &kp C         &kp V  &kp B       &kp N  &kp M  &kp COMMA &kp DOT &lt SYMBOLS FSLH &kp RSHFT
+   &trans       &kp A           &kp S          &kp D         &kp F  &kp G       &kp H  &kp J  &kp K     &kp L   &kp SEMI         &kp SQT
+   &kp RBKT      &lt SYMBOLS Z   &kp X          &kp C         &kp V  &kp B       &kp N  &kp M  &kp COMMA &kp DOT &lt SYMBOLS FSLH &kp RSHFT
                                             &langtog DVORAK &trans &trans       &trans &trans &trans
                         >;
                 };
